@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MVC Activity/MVC Activity/bin
+/MVC Activity/MVC Activity/obj

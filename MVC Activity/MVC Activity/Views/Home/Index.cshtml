@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+<br>
+<h2>list of Orders</h2>
+<br>
+@*<a class='btn btn-primary btn-sm' href='/Privacy'>Order No</a>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order No</th>
+            <th>Order Date</th>
+            <th>Customer Name</th>
+            <th>Total Amount</th>
+        </tr>
+        <tr>
+            <td id="orderno">
+
+                @*<a href="@Url.Action("Privacy", "Home", new { orderno = "01", orderdate = "12/09/22",customername="Sanny Marinduque",totalamount="1000.00" })">
+           01
+        </a>
+
+            </td>
+            <td id="orderdate">12/09/22</td>
+            <td id="customername">Sanny Marinduque</td>
+            <td id="totalamount">1000.00</td>*@
+</tr>
+        <hr />
+        @ViewBag.on
+        @ViewBag.od
+    </thead>
+    <tbody>
+    </tbody>
+</table>
