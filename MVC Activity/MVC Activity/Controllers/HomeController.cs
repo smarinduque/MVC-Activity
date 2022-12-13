@@ -23,8 +23,12 @@ namespace MVC_Activity.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(String orderno, String orderdate, String customername, String totalamount)
         {
+            ViewBag.on = string.Format("{0}", orderno);
+            ViewBag.od = orderdate;
+            ViewBag.cn = customername;
+            ViewBag.ta = totalamount;
             return View();
         }
 

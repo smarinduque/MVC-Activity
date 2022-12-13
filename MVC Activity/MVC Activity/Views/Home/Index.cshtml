@@ -20,17 +20,17 @@
             <th>Total Amount</th>
         </tr>
         <tr>
-            <td id="orderno">
-
-                @*<a href="@Url.Action("Privacy", "Home", new { orderno = "01", orderdate = "12/09/22",customername="Sanny Marinduque",totalamount="1000.00" })">
-           01
-        </a>
-
-            </td>
-            <td id="orderdate">12/09/22</td>
-            <td id="customername">Sanny Marinduque</td>
-            <td id="totalamount">1000.00</td>*@
-</tr>
+            <td><a href="@Url.Action("Privacy", "Home", new { orderno = "01", orderdate = "12/09/22",customername="Sanny Marinduque",totalamount="1000.00" })">01</a></td>
+            <td>12/09/22</td>
+            <td>Sanny Marinduque</td>
+            <td>1000.00</td>
+        </tr>
+        <tr>
+            <td><a href="@Url.Action("Privacy","Home",new { orderno="02",orderdate="12/13/22",customername="No Name", totalamount="2000.oo"})">02</a></td>
+            <td>12/13/22</td>
+            <td>No Name</td>
+            <td>2000.oo</td>
+        </tr>
         <hr />
         @ViewBag.on
         @ViewBag.od
