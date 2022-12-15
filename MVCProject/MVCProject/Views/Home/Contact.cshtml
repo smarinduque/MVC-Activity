@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "List of Orders";
+}
+<h1>@ViewBag.Title</h1>
+
+<br>
+<form method="post" asp-action="index">
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Order No</label>
+        <div class="col-sm-6">
+            <label class="form-control" name="orderno">@ViewBag.on</label>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Order Date</label>
+        <div class="col-sm-6">
+            <label class="form-control" name="orderdate">@ViewBag.od</label>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Customer Name</label>
+        <div class="col-sm-6">
+            <label class="form-control" name="customername">@ViewBag.cn</label>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Total Amount</label>
+        <div class="col-sm-6">
+            <label class="form-control" name="totalamount">@ViewBag.ta</label>
+        </div>
+    </div>
+
+</form>
+<br>
+<a class="btn btn-primary btn-sm" href="/Home/index">Back</a>
+<br>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MVCProject.Models.CustomerDTO>
+@{
+    ViewBag.Title = "List of Customers";
+}
+
+<h1>@ViewBag.Title</h1>
+<br>
+<a class="btn btn-primary btn-sm" href="@Url.Action("AddCustomer","Customers")">Add Customer</a>
+<br>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ContactName</th>
+            <th>TelNo</th>
+            <th>mobileNo</th>
+            <th>IsActive</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContactName</td>
+                <td>@item.TelNo</td>
+                <td>@item.MobileNO</td>
+                <td>@item.IsActive</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditCustomer", new {@class ="btn btn-primary btn-sm", Id = item.Id})
+                    @*<a class="btn btn-primary btn-sm" href="@Url.Action("EditCustomer","Customers")">Edit</a>*@
+                    @*<a class="btn btn-danger btn-sm">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+

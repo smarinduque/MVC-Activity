@@ -1,0 +1,108 @@
+﻿@model MVCProject.Models.Customer
+
+<h1>@ViewBag.Tittle</h1>
+<br>
+@using (Html.BeginForm("EditCustomer", "Customers", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+<form>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Contact name</label>
+        <div class="col-sm-6">
+            @* <Label id="cname" class="form-control" name="contactname"></Label>*@
+            @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control", @readonly = true })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-6">
+            @*<input id="fname" class="form-control" name="firstname" />*@
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Last Name</label>
+        <div class="col-sm-6">
+            @*<input id="lname" class="form-control" name="lastname" />*@
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Middle Name</label>
+        <div class="col-sm-6">
+            @*<input id="mname" class="form-control" name="middlename" />*@
+            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Gender</label>
+        <div class="col-sm-6">
+            @*<select id="_gender" class="form-control" name="gender">
+                    <option value="">Male</option>
+                    <option value="">Female</option>
+                    <option value="">Undecided</option>
+                </select>*@
+            @Html.DropDownListFor(m => m.Gender, new List<SelectListItem> {
+            new SelectListItem{ Text = "Male", Value = "Male" },
+            new SelectListItem{ Text = "Female", Value = "Female"},
+            new SelectListItem{ Text = "Undecided", Value = "Undecided"}}, "Please select", new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Local Address</label>
+        <div class="col-sm-6">
+            @*<input id="laddress" class="form-control" name="localaddress" />*@
+            @Html.TextBoxFor(m => m.LocalAddress, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">TelNo</label>
+        <div class="col-sm-6">
+            @*<input id="tel_no" class="form-control" name="telno" />*@
+            @Html.TextBoxFor(m => m.TelNo, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">MobileNo</label>
+        <div class="col-sm-6">
+            @*<input id="mobile_no" class="form-control" name="mobileno" />*@
+            @Html.TextBoxFor(m => m.MobileNO, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">IsActive</label>
+        <div class="col-sm-6">
+            @Html.DropDownListFor(m => m.IsActive, new List<SelectListItem> {
+            new SelectListItem{ Text = "True", Value = "True" },
+            new SelectListItem{ Text = "False", Value = "False"}}, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Created Date</label>
+        <div class="col-sm-6">
+            @*<input type="date" id="creared_date" class="form-control" name="createddate" />*@
+            @Html.TextBoxFor(m => m.CreatedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = true })
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Updated Date</label>
+        <div class="col-sm-6">
+            @*<input type="date" id="updated_date" class="form-control" name="updateddate" />*@
+            @Html.TextBoxFor(m => m.UpdatedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <a class="btn btn-primary btn-sm" href="@Url.Action("Customer","Customers")"> Back </a>
+        </div>
+        <div class="col-sm-3">
+            @*<a class="btn btn-primary btn-sm" href="">Save</a>*@
+            <input type="submit" value="Save" class="btn btn-success btn-sm" />
+        </div>
+    </div>
+</form>
+}
+
