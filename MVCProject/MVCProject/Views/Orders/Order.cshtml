@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Home";
+﻿@model MVCProject.Models.Customer
+@{
+    ViewBag.Title = "Orders";
 }
 @*<div class="text-center">
         <h1 class="display-4">Welcome</h1>
@@ -8,10 +9,15 @@
 <br>
 <h2>@ViewBag.Title</h2>
 <br>
+
+@Html.DropDownList("CustomerList", null, "Select Name", new { @class = "form-control" });
+<br>
 @*<a class='btn btn-primary btn-sm' href='/Privacy'>Order No</a>*@
 @*<a class="btn btn-primary btn-sm" href="@Url.Action("Customer", "Customer")">New Customer</a>*@
 
-@*<table class="table">
+
+
+<table class="table">
     <thead>
         <tr>
             <th>Order No</th>
@@ -20,13 +26,15 @@
             <th>Total Amount</th>
         </tr>
         <tr>
-            @ <td></td>
+            @*<td><a href="@Url.Action("Order", "Orders", new { orderno = "01", orderdate = "12/09/22",customername="Sanny Marinduque",totalamount="1000.00" })">01</a></td>*@
+            <td> </td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
         <tr>
-            <td></td>
+            @*<td><a href="@Url.Action("Order","Orders",new { orderno="02",orderdate="12/13/22",customername="No Name", totalamount="2000.oo"})">02</a></td>*@
+            <td> </td>
             <td></td>
             <td></td>
             <td></td>
@@ -34,4 +42,4 @@
     </thead>
     <tbody>
     </tbody>
-</table>*@
+</table>
