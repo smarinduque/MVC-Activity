@@ -128,8 +128,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\CustomerContext.cs" />
+    <Compile Include="Context\OrderContext.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +142,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDTO.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,9 +185,11 @@
     <Content Include="Views\Customers\Customer.cshtml" />
     <Content Include="Views\Customers\AddCustomer.cshtml" />
     <Content Include="Views\Customers\EditCustomer.cshtml" />
+    <Content Include="Views\Orders\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
