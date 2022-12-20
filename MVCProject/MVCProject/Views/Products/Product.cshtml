@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MVCProject.Models.ProductDTO>
+
+<h1>@ViewBag.Tittle</h1>
+<br>
+<a class="btn btn-primary btn-sm" href="@Url.Action("AddProduct","Products")">Add Product</a>
+<br>
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Stack On Hand</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><input type="text" style="background-color:#ffffff;" class="form-control" value="@item.Code" /></td>
+                <td><input type="text" style="background-color:#ffffff;" class="form-control" value="@item.Name" /></td>
+                <td><input type="number" style="background-color:#ffffff;" class="form-control" value="@item.StockOnHand" /></td>
+                <td><input type="number" style="background-color:#ffffff;" class="form-control" value="@item.Price" /></td>
+                <td>@Html.ActionLink("Edit", "EditProduct", new { @class = "btn btn-primary btn-sm", Code = item.Code })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

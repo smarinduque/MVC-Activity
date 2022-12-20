@@ -7,13 +7,13 @@ namespace MVCProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddCustomerTable : IMigrationMetadata
+    public sealed partial class addCustomerDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCustomerTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addCustomerDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "202212132355188_AddCustomerTable"; }
+            get { return "202212190716196_addCustomerDB"; }
         }
         
         string IMigrationMetadata.Source

@@ -17,22 +17,22 @@
             <th>IsActive</th>
             <th>Action</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.ContactName</td>
-                <td>@item.TelNo</td>
-                <td>@item.MobileNO</td>
-                <td>@item.IsActive</td>
+                <td><input type="text" style="background-color: #ffffff;" class="form-control" value="@item.ContactName" /></td>
+                <td><input type="text" style="background-color: #ffffff;" class="form-control" value="@item.TelNo" /></td>
+                <td><input type="text" style="background-color: #ffffff;" class="form-control" value="@item.MobileNO" /></td>
+                <td><input type="text" style="background-color: #ffffff;" class="form-control" value="@item.IsActive" /></td>
                 <td>
-                    @Html.ActionLink("Edit", "EditCustomer", new {@class ="btn btn-primary btn-sm", Id = item.Id})
+                    @Html.ActionLink("Edit", "EditCustomer", new { @class = "btn btn-primary btn-sm", Id = item.Id })
                     @*<a class="btn btn-primary btn-sm" href="@Url.Action("EditCustomer","Customers")">Edit</a>*@
                     @*<a class="btn btn-danger btn-sm">Delete</a>*@
                 </td>
             </tr>
         }
-    </thead>
-    <tbody>
     </tbody>
 </table>
 

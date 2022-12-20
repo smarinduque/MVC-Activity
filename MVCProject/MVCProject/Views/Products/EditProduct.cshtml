@@ -1,0 +1,47 @@
+﻿@model MVCProject.Models.Product
+<h1>@ViewBag.Tittle</h1>
+<br>
+@using (Html.BeginForm("EditProduct", "Products", FormMethod.Post))
+{
+    @Html.HiddenFor(p => p.Code);
+<form>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Code</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(p => p.Code, new { @class = "form-control", @Readonly = true })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Stock On Hand</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(p => p.StockOnHand, new { @class = "form-control", @type = "number" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(p => p.Price, new { @class = "form-control", @type ="number" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <a class="btn btn-primary btn-sm" href="@Url.Action("Product","Products")">Back</a>
+        </div>
+        <div class="col-sm-3">
+            <input type="submit" class="btn btn-success btn-sm" value="Save" />
+        </div>
+    </div>
+</form>
+}
+
+
