@@ -6,16 +6,14 @@ using System.Web;
 
 namespace MVCProject.Models
 {
-    public class Order
+    public class OrderDTO
     {
-        [Key]
         public int Id { get; set; }
         public string OrderNo { get; set; }
         public DateTime OrderDate { get; set; }
         public int CustomerId { get; set; }
         public double TotalAmount { get; set; }
-        public Customer customer {get; set; }
-        public List<Order_items> Items { get; set; }
-
+        public CustomerDTO customer { get; set; }
+        public List<Order_itemsDTO> Items { get; set; }
     }
 }

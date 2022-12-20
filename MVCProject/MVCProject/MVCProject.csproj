@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -128,21 +131,26 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\CustomerContext.cs" />
-    <Compile Include="Context\OrderContext.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212132355188_AddCustomerTable.cs" />
-    <Compile Include="Migrations\202212132355188_AddCustomerTable.designer.cs">
-      <DependentUpon>202212132355188_AddCustomerTable.cs</DependentUpon>
+    <Compile Include="Migrations\202212190716196_addCustomerDB.cs" />
+    <Compile Include="Migrations\202212190716196_addCustomerDB.designer.cs">
+      <DependentUpon>202212190716196_addCustomerDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDTO.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDTO.cs" />
+    <Compile Include="Models\Order_items.cs" />
+    <Compile Include="Models\Order_itemsDTO.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +193,14 @@
     <Content Include="Views\Customers\AddCustomer.cshtml" />
     <Content Include="Views\Customers\EditCustomer.cshtml" />
     <Content Include="Views\Orders\Order.cshtml" />
+    <Content Include="Views\Products\Product.cshtml" />
+    <Content Include="Views\Products\EditProduct.cshtml" />
+    <Content Include="Views\Products\AddProduct.cshtml" />
+    <Content Include="Views\Orders\AddOrder.cshtml" />
+    <Content Include="Views\Orders\EditOrder.cshtml" />
+    <Content Include="Views\Orders\EditOrderItem.cshtml" />
+    <Content Include="Views\Orders\ModalProduct.cshtml" />
+    <Content Include="Views\Orders\OrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -203,8 +219,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202212132355188_AddCustomerTable.resx">
-      <DependentUpon>202212132355188_AddCustomerTable.cs</DependentUpon>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202212190716196_addCustomerDB.resx">
+      <DependentUpon>202212190716196_addCustomerDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

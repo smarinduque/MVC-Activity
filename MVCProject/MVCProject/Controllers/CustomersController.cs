@@ -41,7 +41,7 @@ namespace MVCProject.Controllers
         [HttpGet]
         public ActionResult AddCustomer()
         {
-            ViewBag.Tittle = "Customer Detail";
+            ViewBag.Tittle = "Customer Details";
             CustomerDTO cdto = new CustomerDTO();
             return View(cdto);
         }
@@ -71,7 +71,7 @@ namespace MVCProject.Controllers
         [HttpGet]
         public ActionResult EditCustomer(int id) 
         {
-            ViewBag.Tittle = "Customer Detail";
+            ViewBag.Tittle = "Customer Details";
             Customer model = new Customer();
             model = cc.Customers.FirstOrDefault(x => x.Id == id);
             return View(model);

@@ -1,0 +1,218 @@
+﻿@model MVCProject.Models.OrderDTO
+
+<h1>@ViewBag.Tittle</h1>
+<br>
+@using (Html.BeginForm("EditOrder", "Orders", FormMethod.Post, new { @id = "formcreate" }))
+{
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Order No</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(o => o.OrderNo, new { @class = "form-control" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Order Date</label>
+        <div class="col-sm-6">
+            @Html.TextBoxFor(o => o.OrderDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        </div>
+    </div>
+    <br>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Customer</label>
+        <div class="col-sm-6">
+            @Html.DropDownList("CustomerId", null, "Select Name", new { @class = "form-control" })
+        </div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-success btn-sm" href="" id="bntaddproduct">Add Product</button>
+            @*<a class="btn btn-success btn-sm" href="" id="bntaddProduct">Add Product</a>*@
+        </div>
+        <div class="col-sm-2">
+            <input type="submit" class="btn btn-primary btn-sm" value="Update" />
+        </div>
+    </div><br><div class="form-row" name="saveOrder" id="saveOrder">
+        <div class="col-md-12">
+            <table class="table" id="productTable">
+                <thead>
+                    <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Amount</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                    @foreach (var items in Model.Items)
+                    {
+                        <tr>
+                            <td><input type='text' style="background-color: #FFFFFF;" id='tblProductCode' class='form-control' value='@items.ProductCode' readonly /></td>
+                            <td><input type='hidden' style="background-color: #FFFFFF;" id='tblProductId' value='@items.ProductId' /><input type='text' style="background-color: #FFFFFF;" id='tblProductName' class='form-control' value='@items.ProductName' readonly /></td>
+                            <td><input type='number' style="background-color: #FFFFFF;" id='tblQuantity' class='form-control' value='@items.Quantity' readonly /></td>
+                            <td><input type='number' style="background-color: #FFFFFF;" id='tblQuantity' class='form-control' value='@items.Price' readonly /></td>
+                            <td><input type='number' style="background-color: #FFFFFF;" id='tblQuantity' class='form-control' value='@items.Amount' readonly /></td>
+                            <td><button type='button' onclick='productDelete(this)' class='btn btn-default'><span class='glyphicon glyphicon-remove' /></button></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<div class="modal" id="productModal">
+    @{
+        Html.RenderAction("ProductModal", "Orders");
+    }
+</div>
+@section scripts
+{
+    <script>
+        //display modal
+    $("#bntaddproduct").click(function () {
+        var id = this.value;
+        $.ajax({
+            url: '@Url.Action("ProductModal", "Orders")',
+            type: 'POST',
+            success: function (result) {
+                $("#productModal").modal("show");
+
+            }
+        });
+    });
+    //onchange productname
+         $("#ProductId").change(function () {
+             var id = this.value;
+            $.ajax({
+                url: '@Url.Action("GetValueOnchangeProduct", "Orders")',
+                data: { id: id },
+                type: 'POST',
+                success: function (result) {
+                    if (result != null) {
+                        $("#ProductCode").val(result.Code);
+                        $("#Price").val(result.Price);
+                    }
+                }
+            });
+         });
+        //onchange quantity
+        $("#Quantity").change(function () {
+            var price = document.getElementById("Price").value;
+            var quantity = document.getElementById("Quantity").value;
+            var resultAmount = quantity * price;
+            $("#Amount").val(resultAmount);
+
+        });
+        // Add products to <table>
+        function productAddToTable() {
+            // First check if a <tbody> tag exists, add one if not
+            if ($("#productTable tbody").length == 0) {
+                $("#productTable").append("<tbody></tbody>");
+            }
+            // Append product to the table
+            $("#productTable tbody").append("<tr>" +
+                "<td><input type='text' id='tblProductCode' class='form-control' value= '" + $('#ProductCode').val() + "' readonly/></td>" +
+                "<td><input type='hidden' id='tblProductId' value='" + $('#ProductId').val() + "'/><input type='text' id='tblProductName' class='form-control' value='" + $('#ProductId option:selected').text() + "' readonly/></td>" +
+                "<td><input type='number' id='tblQuantity' class='form-control' value='" + $('#Quantity').val() + "' readonly/></td>" +
+                "<td><input type='number' id='tblPrice' class='form-control' value='" + $('#Price').val() + "' readonly/></td>" +
+                "<td><input type='text' id='tblAmount' class='form-control'  value='" + $('#Amount').val() + "' readonly/></td>" +
+                "<td><button type='button' onclick = 'productDelete(this)' class= 'btn btn-default' > " + "<span class='glyphicon glyphicon-remove' /></button></td>" +
+                "</tr>")
+        };
+        $(document).ready(function () {
+            $(document).on('click', '.btnaddOrder', function () {
+                productAddToTable();
+                $("#productModal").modal("hide");
+                formClear();
+            });
+        });
+        function formClear() {
+            $("#ProductCode").val("");
+            $("#ProductName").val("");
+            $("#Quantity").val("");
+            $("#Price").val("");
+            $("#Amount").val("");
+            $("#ProductId").val("");
+        };
+
+        function productDelete(ctl) {
+            $(ctl).parents("tr").remove();
+        };
+        //var _$form = $("#formCreate");
+        //$(document).on('submit', "#formCreate", function (e)
+        var _$form = $("#formcreate");
+        $('#formcreate').submit(function (e) {
+            e.preventDefault();
+            var formData = objectifyForm(_$form.serializeArray());
+            formData.items = [];
+
+            var orderItems = new Array();
+            $("#productTable TBODY TR").each(function () {
+                var row = $(this);
+                var item = {};
+                item.ProductCode = row.find("input").eq(0).val();
+                item.ProductId = row.find("input").eq(1).val();
+                item.ProductName = row.find("input").eq(2).val();
+                item.Quantity = row.find("input").eq(3).val();
+                item.Price = row.find("input").eq(4).val();
+                item.Amount = row.find("input").eq(5).val();
+                orderItems.push(item);
+            });
+            formData.items = orderItems;
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("EditOrder", "Orders")',
+                data: JSON.stringify(formData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    window.location = '@Url.Action("Order", "Orders")';
+                }
+            });
+        });
+        //$(document).on('submit', "#formCreate", function (e) {
+
+
+                @*var formData = objectifyForm(_$form.serializeArray());
+                formData.items = [];
+
+                var orderItems = new Array();
+            $("#productTable TBODY TR").each(function () {
+                    var row = $(this);
+                    var item = {};
+                    item.ProductCode = row.find("input").eq(0).val();
+                    item.ProductId = row.find("input").eq(1).val();
+                    item.ProductName = row.find("input").eq(2).val();
+                    item.Quantity = row.find("input").eq(3).val();
+                    item.Price = row.find("input").eq(4).val();
+                    item.Amount = row.find("input").eq(5).val();
+                    orderItems.push(item);
+                });
+            formData.items = orderItems;
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddOrder", "Orders")',
+                data: JSON.stringify(formData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    window.location = '@Url.Action("Order", "Orders")';
+                    }
+                });*@
+        //});
+
+        function objectifyForm(formArray) {
+            //serialize data function
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+    </script>
+}
+

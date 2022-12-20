@@ -1,45 +1,56 @@
-﻿@model MVCProject.Models.Customer
-@{
-    ViewBag.Title = "Orders";
+﻿@model IEnumerable<MVCProject.Models.OrderDTO>
+
+<br>
+<h2>@ViewBag.Tittle</h2>
+<br>
+<dev>
+    <div class="col-sm-4">
+        @Html.DropDownList("CustomerList", null, "Select Name", new { @class = "form-control" });
+    </div>
+    <div class="col-sm-2">
+        <a class="btn btn-primary btn-sm" href="@Url.Action("AddOrder","Orders")">New Order</a>
+    </div>
+    @{  
+        Html.RenderAction("_OrderDetails", "Orders");
+    }
+</dev>
+<br>
+
+@section scripts {
+    <script>
+        $("#CustomerList").change(function () {
+            var id = this.value;
+            $.ajax({
+                url: '@Url.Action("_OrderDetails", "Orders")',
+                data: { id: id },
+                type: 'POST',
+                success: function (result) {
+                    $("#ordList").html(result);
+                }
+            });
+        });
+    </script>
 }
-@*<div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>*@
-<br>
-<h2>@ViewBag.Title</h2>
-<br>
 
-@Html.DropDownList("CustomerList", null, "Select Name", new { @class = "form-control" });
-<br>
-@*<a class='btn btn-primary btn-sm' href='/Privacy'>Order No</a>*@
-@*<a class="btn btn-primary btn-sm" href="@Url.Action("Customer", "Customer")">New Customer</a>*@
-
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Order No</th>
-            <th>Order Date</th>
-            <th>Customer Name</th>
-            <th>Total Amount</th>
-        </tr>
-        <tr>
-            @*<td><a href="@Url.Action("Order", "Orders", new { orderno = "01", orderdate = "12/09/22",customername="Sanny Marinduque",totalamount="1000.00" })">01</a></td>*@
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            @*<td><a href="@Url.Action("Order","Orders",new { orderno="02",orderdate="12/13/22",customername="No Name", totalamount="2000.oo"})">02</a></td>*@
-            <td> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>Order No</th>
+                <th>Order Date</th>
+                <th>Customer Name</th>
+                <th>Total Amount</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderNo</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.Customer</td>
+                    <td>@item.TotalAmount</td>
+                    <td>@Html.ActionLink("Edit","EditOrder",new {@class ="btn btn-primary btn-sm"})<</td>
+                </tr>
+            }
+        </thead>
+        <tbody>
+        </tbody>
+    </table>*@
